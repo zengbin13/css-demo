@@ -1,0 +1,67 @@
+.angle > div {
+  width: 0px;
+  height: 0px;
+  border: 100px solid transparent;
+  border-top-color: rgb(245, 174, 165);
+}
+.dashed > div {
+  padding: 10px;
+  border: 5px dashed transparent;
+  background: linear-gradient(white, white) padding-box,
+    repeating-linear-gradient(45deg, #000 0, #000 0.25em, white 0, white 0.75em);
+}
+.single-line > div {
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.multi-line > div {
+  /* 允许在单词内换行 */
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 将对象作为弹性伸缩盒子模型显示  */
+  display: -webkit-box;
+  /* 设置或检索伸缩盒对象的子元素的排列方式 */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.scroll-container > .scroll {
+  height: 100px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: #fff;
+  }
+  &::-webkit-scrollbar-corner, /* 滚动条角落 */
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-corner,
+  &::-webkit-scrollbar-track {
+    /* 滚动条轨道 */
+    background-color: rgba(180, 160, 120, 0.1);
+    box-shadow: inset 0 0 1px rgba(180, 160, 120, 0.5);
+  }
+  &::-webkit-scrollbar-thumb {
+    /* 滚动条手柄 */
+    background-color: #60eaf1;
+  }
+}
+// 卡券效果
+.coupon {
+  width: 300px;
+  height: 100px;
+  position: relative;
+  background: radial-gradient(circle at right bottom, transparent 10px, #ffffff 0) top right / 50%
+      51px no-repeat,
+    radial-gradient(circle at left bottom, transparent 10px, #ffffff 0) top left / 50% 51px
+      no-repeat,
+    radial-gradient(circle at right top, transparent 10px, #ffffff 0) bottom right / 50% 51px
+      no-repeat,
+    radial-gradient(circle at left top, transparent 10px, #ffffff 0) bottom left / 50% 51px
+      no-repeat;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}

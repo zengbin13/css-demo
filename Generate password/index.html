@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1678833_siecvpbec9l.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="title-box">
+        <div class="dot-box">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h3 class="title">
+          密码生成器
+        </h3>
+      </header>
+      <div class="container">
+        <section class="password">
+          {{password}}
+          <input
+            type="text"
+            v-model="password"
+            id="password-copy"
+            readonly="readonly"
+          />
+          <p class="copy" @click="copy">
+            {{copyText}}
+            <i class="iconfont icon-copy" v-if="icon"></i>
+            <i class="iconfont icon-chenggong" v-else></i>
+          </p>
+        </section>
+        <div class="length-box">
+          <div class="length-info">长度: {{length}}</div>
+          <section class="length">
+            <span>6</span>
+            <input type="range" max="32" min="6" step="1" v-model="length" />
+            <span>32</span>
+          </section>
+        </div>
+        <div class="setting-box">
+          <div class="title">Setting:</div>
+          <div class="setting-wrap">
+            <section class="setting">
+              <input
+                type="checkbox"
+                id="number-case"
+                :checked="openNum"
+                @click="isNumber"
+              />
+              <label for="number-case">包含数字</label>
+            </section>
+            <section class="setting">
+              <input
+                type="checkbox"
+                id="lower-case"
+                :checked="openLowCase"
+                @click="isLowCase"
+              />
+              <label for="lower-case">包含小写</label>
+            </section>
+            <section class="setting">
+              <input
+                type="checkbox"
+                id="upper-case"
+                :checked="openUpperCase"
+                @click="isUpperCase"
+              />
+              <label for="upper-case">包含大写</label>
+            </section>
+            <section class="setting">
+              <input
+                type="checkbox"
+                id="sym-case"
+                :checked="openSym"
+                @click="isSym"
+              />
+              <label for="sym-case">包含符号</label>
+            </section>
+          </div>
+        </div>
+        <section class="submit" @click="getRandomPass">生成密码</section>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

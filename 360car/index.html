@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Benz</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="car">
+        <img
+          src="https://cdn.scaleflex.it/demo/360-car/iris-1.jpeg"
+          alt="car"
+        />
+      </div>
+    </div>
+    <div id="cache"></div>
+  </body>
+  <script>
+    let path = "https://cdn.scaleflex.it/demo/360-car/iris-";
+    let current = 1;
+
+    for (let i = 0; i < 36; i++) {
+      let cahe = document.getElementById("cache");
+      cahe.innerHTML += `<img src="${path}${i + 1}.jpeg"/>`;
+    }
+    window.addEventListener("wheel", (e) => {
+      // e.wheelDelta判断滚轮向上还是向下滚动
+      e.wheelDelta > 0 ? next() : prev();
+    });
+    let img = document.querySelector("#car img");
+    function next() {
+      if (current < 36) {
+        img.src = `${path}${current++}.jpeg`;
+      }
+    }
+    function prev() {
+      if (current > 1) {
+        img.src = `${path}${--current}.jpeg`;
+      }
+    }
+  </script>
+</html>

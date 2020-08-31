@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>clock-dark</title>
+  </head>
+  <body>
+    <div class="container">
+      <label for="toggle" class="ios-button">
+        <input type="checkbox" id="toggle" />
+        <span class="button"></span>
+      </label>
+      <div class="clock">
+        <div class="hour">
+          <div class="hr" id="hr"></div>
+        </div>
+        <div class="minute">
+          <div class="min" id="min"></div>
+        </div>
+        <div class="second">
+          <div class="sec" id="sec"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./darken.umd.js"></script>
+    <script>
+      const darkmode = new darken({
+        variables: {
+          "--container-background": ["#a8f8f4", "#1c1c1e"],
+          "--clock-background": [
+            "#fff url(./clock.png)",
+            "#242425 url(clock.png)",
+          ],
+          "--clock-border": ["20px solid #fff", "20px solid #242425"],
+          "--clock-box-shadow": [
+            "inset 0 0 30px rgba(0, 0, 0, 0.1),0 20px 20px rgba(0, 0, 0, 0.2), 0 0 0 4px rgba(255, 255, 255, 1)",
+            "inset 0 0 10px rgba(255, 255, 255, 0.1),0 20px 30px rgba(99, 99, 99, 0.1), 0 0 6px 2px rgba(0, 0, 0, 1)",
+          ],
+          "--clock-before-background": ["#848484", "#848484"],
+          "--clock-before-border": ["2px solid #fff", "2px solid #242425"],
+          "--hr-background": ["#848484", "#848484"],
+          "--min-background": ["#d6d6d6", "#d6d6d6"],
+          "--sec-background": ["#ff6767", "#ff6767"],
+          "--button-width": ["50px", "50px"],
+          "--button-height": ["29.5px", "29.5px"],
+          "--toggle-diameter": ["25.5px", "25.5px"],
+          "--toggle-shadow-offset": ["1px", "1px"],
+          "--button-toggle-offset": [
+            "calc((var(--button-height) - var(--toggle-diameter)) / 2)",
+            "calc((var(--button-height) - var(--toggle-diameter)) / 2)",
+          ],
+          "--button-toggle-offset-left": [
+            "calc((var(--button-height) - var(--toggle-diameter)) / 2)",
+            "calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset))",
+          ],
+          "--button-toggle-offset-active": [
+            "calc((var(--button-height) - var(--toggle-diameter)) / 2)",
+            "calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset))",
+          ],
+          "--toggle-wider": ["33.3px", "33.3px"],
+          "--color-grey": ["#30d158", "#39393d"],
+        },
+        toggle: "#toggle",
+      });
+      const mode = getComputedStyle(document.documentElement).getPropertyValue(
+        "content"
+      );
+      if (mode == '"dark"') {
+        darkmode.on();
+      } else darkmode.off();
+    </script>
+    <script>
+      function setIntervalImmediately(func, interval) {
+        func();
+        return setInterval(func, interval);
+      }
+      function clockWalk(params) {
+        const hr = document.querySelector("#hr");
+        const min = document.querySelector("#min");
+        const sec = document.querySelector("#sec");
+        let day = new Date();
+        let hh = day.getHours() * 30;
+        let mm = day.getMinutes() * 6;
+        let ss = day.getSeconds() * 6;
+        hr.style.transform = `rotateZ(${hh + mm / 12}deg)`;
+        min.style.transform = `rotateZ(${mm}deg)`;
+        sec.style.transform = `rotateZ(${ss}deg)`;
+      }
+      setIntervalImmediately(clockWalk, 1000)
+    </script>
+  </body>
+</html>
